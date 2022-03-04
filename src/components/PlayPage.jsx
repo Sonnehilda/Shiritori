@@ -5,14 +5,12 @@ import Correct from "../sfx/correct.mp3";
 import Wrong from "../sfx/wrong.mp3";
 import Boom from "../sfx/boom.mp3";
 import GameOver from "../sfx/over.mp3";
-import Music from "../bgm/Game.mp3";
 
 const PlayPage = React.memo(function PlayPage() {
   const CorrectSFX = new Audio(Correct);
   const WrongSFX = new Audio(Wrong);
   const BoomSFX = new Audio(Boom);
   const GameOverSFX = new Audio(GameOver);
-  const BGM = new Audio(Music);
 
   let currentTime = 0;
   const nameInput = useRef();
@@ -58,40 +56,11 @@ const PlayPage = React.memo(function PlayPage() {
       dispatch({ type: "tick" });
     }, 500);
     return () => {
+      usedWord.clear();
+      setUsedWord(undefined);
       clearInterval(Timer);
     };
   }, []);
-
-  useEffect(() => {
-    CorrectSFX.volume = 0.25;
-    WrongSFX.volume = 0.25;
-    BoomSFX.volume = 0.25;
-    GameOverSFX.volume = 0.25;
-    BGM.volume = 0.75;
-
-    playGame();
-    window.addEventListener("focus", playGame);
-    window.addEventListener("blur", pauseGame);
-    return () => {
-      window.removeEventListener("focus", playGame);
-      window.removeEventListener("blur", pauseGame);
-      pauseGame();
-      setUsedWord(null);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const playGame = () => {
-    BGM.loop = true;
-    BGM.currentTime = currentTime;
-    BGM.play();
-    nameInput.current.focus();
-  };
-
-  const pauseGame = () => {
-    BGM.pause();
-    currentTime = BGM.currentTime;
-  };
 
   const errorMessage = (msg) => {
     WrongSFX.play();

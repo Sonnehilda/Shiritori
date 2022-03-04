@@ -20,6 +20,7 @@ export const Wrapper = styled.div`
   background-color: #666;
 
   margin: 0 auto;
+  margin-top: 5vh;
 
   width: 75vh;
   height: 90vh;

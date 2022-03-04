@@ -33,11 +33,6 @@ html {
 }
 img {
     -webkit-user-drag: none;
-}
-#root {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
 }`;
 
 export default GlobalStyle;

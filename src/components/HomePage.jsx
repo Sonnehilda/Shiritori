@@ -1,43 +1,44 @@
 import React, { useEffect } from "react";
 import * as S from "../style/home";
-import Music from "../bgm/Theme.mp3";
+import Hover from "../sfx/hover.mp3";
 import Click from "../sfx/click.mp3";
+import Play from "../sfx/play.mp3";
 
 const HomePage = React.memo(function HomePage() {
-  const BGM = new Audio(Music);
-  let currentTime = 0;
+  const HoverSFX = new Audio(Hover);
+  const ClickSFX = new Audio(Click);
+  const PlaySFX = new Audio(Play);
 
-  useEffect(() => {
-    BGM.volume = 0.75;
-
-    playGame();
-    window.addEventListener("focus", playGame);
-    window.addEventListener("blur", pauseGame);
-    return () => {
-      window.removeEventListener("focus", playGame);
-      window.removeEventListener("blur", pauseGame);
-      pauseGame();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const playGame = () => {
-    BGM.loop = true;
-    BGM.currentTime = currentTime;
-    BGM.play();
+  const hoverSound = () => {
+    HoverSFX.pause();
+    HoverSFX.currentTime = 0;
+    HoverSFX.play();
   };
 
-  const pauseGame = () => {
-    BGM.pause();
-    currentTime = BGM.currentTime;
+  const clickSound = (e) => {
+    if (e.target.text === "PLAY") {
+      PlaySFX.pause();
+      PlaySFX.currentTime = 0;
+      PlaySFX.play();
+    } else {
+      ClickSFX.pause();
+      ClickSFX.currentTime = 0;
+      ClickSFX.play();
+    }
   };
 
   return (
     <S.Wrapper>
       <S.Logo to="/">Shiritori</S.Logo>
-      <S.Button to="/play">PLAY</S.Button>
-      <S.Button to="/settings">SETTINGS</S.Button>
-      <S.Button to="/about">ABOUT</S.Button>
+      <S.Button onMouseEnter={hoverSound} onClick={clickSound} to="/play">
+        PLAY
+      </S.Button>
+      <S.Button onMouseEnter={hoverSound} onClick={clickSound} to="/settings">
+        SETTINGS
+      </S.Button>
+      <S.Button onMouseEnter={hoverSound} onClick={clickSound} to="/about">
+        ABOUT
+      </S.Button>
     </S.Wrapper>
   );
 });
