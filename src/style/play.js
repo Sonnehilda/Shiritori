@@ -1,42 +1,39 @@
 import styled, { keyframes } from "styled-components";
+import { Link } from "react-router-dom";
 
-export const Wrapper = styled.div`
-  background-color: #666;
+export const Logo = styled(Link)`
+  all: unset;
 
-  margin: 0 auto;
-  margin-top: 5vh;
+  font-size: 8vh;
+  font-weight: 300;
+  color: #d8c292;
 
-  width: 75vh;
-  height: 90vh;
+  transition: 0.25s filter;
+  cursor: pointer;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-
-  text-align: center;
-
-  border-radius: 1.5vh;
-
-  filter: opacity(75%);
+  :hover {
+    filter: brightness(125%) drop-shadow(0rem 0rem 0.5rem #f2a154);
+  }
 `;
 
 export const Char = styled.div`
   font-size: 2.5vh;
   font-weight: 100;
-  color: #ff0;
+  color: #ccc;
 `;
 
 export const Word = styled.div`
   font-size: ${(props) =>
     props.status === "wrong"
-      ? "2rem"
-      : (props) => (props.status === "correct" ? "2rem" : "1.5rem")};
+      ? "4vh"
+      : (props) => (props.status === "correct" ? "4vh" : "3vh")};
   font-weight: 100;
   color: ${(props) =>
     props.status === "wrong"
       ? "red"
-      : (props) => (props.status === "correct" ? "#FFF" : "#AAA")};
+      : (props) => (props.status === "correct" ? "#FFF" : "#CCC")};
+
+  filter: opacity(125%) brightness(125%) drop-shadow(0rem 0rem 0.5rem #f2a154) !important;
 `;
 
 export const Meaning = styled.div`
@@ -44,7 +41,7 @@ export const Meaning = styled.div`
 
   font-size: 2vh;
   font-weight: 100;
-  color: #ff0;
+  color: #ccc;
 
   overflow: hidden;
   text-overflow: ellipsis;
@@ -53,61 +50,71 @@ export const Meaning = styled.div`
 
 export const Input = styled.input`
   all: unset;
-  width: 15rem;
-  height: 1.5rem;
-  border-bottom: 0.1rem solid #fff;
+
+  width: 27.5vh;
+  height: 3vh;
+
+  font-size: 2vh;
+  font-weight: 100;
   color: #fff;
-  font-size: 1rem;
+
+  border-bottom: 0.2vh solid #fff;
 `;
 
 export const TimerBar = styled.div`
-  width: 15rem;
+  width: 27.5vh;
   height: 1rem;
+
   display: inline-flex;
   justify-content: center;
 `;
 
 export const TimerBarEmpty = styled.div`
-  z-index: 0;
   position: absolute;
-  width: 15rem;
-  height: 1rem;
   background-color: #acacac;
+
+  width: 27.5vh;
+  height: 1.5vh;
+
+  z-index: 0;
 `;
 
 export const TimerBarFull = styled.div`
   z-index: 1;
   position: absolute;
-  width: ${(props) => `${props.time / 6.666}rem`};
-  height: 1rem;
+  width: ${(props) => `${props.time / 3.637}vh`};
+  height: 1.5vh;
   background-color: rgb(255, ${(props) => props.time * 2.55}, 0);
 `;
 
 export const TimerDisplay = styled.div`
-  font-size: 1rem;
+  font-size: 2vh;
   font-weight: 100;
   color: #ccc;
 `;
 
 export const Score = styled.div`
-  font-size: 1.5rem;
+  font-size: 3vh;
+  font-weight: 100;
   color: #fff;
 `;
 
 const fadeOut = keyframes`
 0% {
   opacity: 1;
-  bottom: 0rem;
 }
 100% {
+  bottom: 8.6vh;
   opacity: 0;
-  bottom: 2.85rem;
 }
 `;
 
 export const ScoreGiven = styled.div`
   position: relative;
-  font-size: ${(props) => (props.scoreGiven >= 80 ? "1.5rem" : "1rem")};
+  bottom: 0vh;
+
+  font-size: ${(props) => (props.scoreGiven >= 80 ? "3vh" : "2vh")};
+  font-weight: 100;
   color: ${(props) => (props.scoreGiven >= 80 ? "#f00" : "#ccc")};
 
   opacity: ${(props) => (props.sgVisible ? 1 : 0)};

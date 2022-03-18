@@ -1,4 +1,4 @@
-import PlayPage from "../components/PlayPage";
+import PlayPage from "../components/pages/PlayPage";
 
 function Play() {
   return (
