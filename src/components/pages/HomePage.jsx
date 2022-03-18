@@ -16,8 +16,12 @@ const HomePage = React.memo(function HomePage() {
     ? localStorage.getItem("language")
     : "EN";
 
-  const savedBgmVolume = localStorage.getItem("bgmvolume");
-  const savedSfxVolume = localStorage.getItem("sfxvolume");
+  const savedBgmVolume = localStorage.getItem("bgmvolume")
+    ? localStorage.getItem("bgmvolume")
+    : 75;
+  const savedSfxVolume = localStorage.getItem("sfxvolume")
+    ? localStorage.getItem("sfxvolume")
+    : 75;
   const savedBgmToggle = "" + localStorage.getItem("bgmtoggle");
   const savedSfxToggle = "" + localStorage.getItem("sfxtoggle");
 

@@ -1,6 +1,6 @@
 import { tickTimeType, addTimeType } from "./types";
 
-const time = 20;
+const time = 200;
 
 const timerReducer = (state = time, action) => {
   switch (action.type) {
@@ -8,11 +8,11 @@ const timerReducer = (state = time, action) => {
       if (state > 0) return state - 1;
       else {
         action.resetData();
-        return (state = 20);
+        return (state = 200);
       }
     case addTimeType:
-      if (state + action.payload <= 20) return state + action.payload;
-      else return (state = 20);
+      if (state + action.payload <= 200) return state + action.payload;
+      else return (state = 200);
     default:
       return state;
   }

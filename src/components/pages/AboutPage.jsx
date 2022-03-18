@@ -20,8 +20,12 @@ const AboutPage = React.memo(function AboutPage() {
     lang === "KR" ? "클릭하여 복사합니다." : "Click Here to Copy!"
   );
 
-  const savedBgmVolume = parseInt(localStorage.getItem("bgmvolume"));
-  const savedSfxVolume = parseInt(localStorage.getItem("sfxvolume"));
+  const savedBgmVolume = localStorage.getItem("bgmvolume")
+    ? localStorage.getItem("bgmvolume")
+    : 75;
+  const savedSfxVolume = localStorage.getItem("sfxvolume")
+    ? localStorage.getItem("sfxvolume")
+    : 75;
   const savedBgmToggle = "" + localStorage.getItem("bgmtoggle");
   const savedSfxToggle = "" + localStorage.getItem("sfxtoggle");
 
