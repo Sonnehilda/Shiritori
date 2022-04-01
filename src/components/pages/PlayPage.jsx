@@ -28,8 +28,12 @@ const PlayPage = React.memo(function PlayPage() {
   const BoomSFX = new Audio(Boom);
   const GameOverSFX = new Audio(GameOver);
 
-  const savedBgmVolume = localStorage.getItem("bgmvolume");
-  const savedSfxVolume = localStorage.getItem("sfxvolume");
+  const savedBgmVolume = localStorage.getItem("bgmvolume")
+    ? localStorage.getItem("bgmvolume")
+    : 75;
+  const savedSfxVolume = localStorage.getItem("sfxvolume")
+    ? localStorage.getItem("sfxvolume")
+    : 75;
   const savedBgmToggle = "" + localStorage.getItem("bgmtoggle");
   const savedSfxToggle = "" + localStorage.getItem("sfxtoggle");
 
@@ -73,7 +77,6 @@ const PlayPage = React.memo(function PlayPage() {
 
   const onEsc = (e) => {
     if (e.key === "Escape") {
-      console.log(overVisible);
       setOverVisible(false);
     }
   };
