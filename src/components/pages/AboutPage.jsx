@@ -84,14 +84,13 @@ const AboutPage = React.memo(function AboutPage() {
         ClickSFX.pause();
         ClickSFX.currentTime = 0;
         ClickSFX.play();
-
-        if (text.includes("rals")) {
-          navigator.clipboard.writeText("rals#1031");
-          setAlert(lang === "KR" ? "복사되었습니다!" : "Copied!");
-        } else if (text.includes("winhave")) {
-          navigator.clipboard.writeText("winhave@naver.com");
-          setAlert(lang === "KR" ? "복사되었습니다!" : "Copied!");
-        }
+      }
+      if (text.includes("rals")) {
+        navigator.clipboard.writeText("rals#1031");
+        setAlert(lang === "KR" ? "복사되었습니다!" : "Copied!");
+      } else if (text.includes("winhave")) {
+        navigator.clipboard.writeText("winhave@naver.com");
+        setAlert(lang === "KR" ? "복사되었습니다!" : "Copied!");
       }
     }
   };
