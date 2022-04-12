@@ -1,8 +1,8 @@
 import React from "react";
-import * as S from "../style/over";
+import * as S from "./styles";
 
-import Hover from "../sfx/hover.mp3";
-import Click from "../sfx/click.mp3";
+import Hover from "../../assets/sfx/hover.mp3";
+import Click from "../../assets/sfx/click.mp3";
 
 const OverModal = React.memo(function OverModal({ setOverVisible }) {
   const HoverSFX = new Audio(Hover);

@@ -1,20 +1,20 @@
 import React, { useState, useRef, useEffect } from "react";
-import * as S from "../../style/play";
+import * as S from "./styles";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 
-import Timer from "../Timer";
-import Score from "../Score";
+import Timer from "../../components/Timer";
+import Score from "../../components/Score";
 import { addTime } from "../../redux/timer/actions";
 import { addScore, setScore } from "../../redux/score/actions";
 
-import Game from "../../bgm/game.mp3";
-import Play from "../../sfx/play.mp3";
-import Correct from "../../sfx/correct.mp3";
-import Wrong from "../../sfx/wrong.mp3";
-import Boom from "../../sfx/boom.mp3";
-import GameOver from "../../sfx/over.mp3";
-import OverModal from "../OverModal";
+import Game from "../../assets/bgm/game.mp3";
+import Play from "../../assets/sfx/play.mp3";
+import Correct from "../../assets/sfx/correct.mp3";
+import Wrong from "../../assets/sfx/wrong.mp3";
+import Boom from "../../assets/sfx/boom.mp3";
+import GameOver from "../../assets/sfx/over.mp3";
+import OverModal from "../../components/OverModal";
 
 const PlayPage = React.memo(function PlayPage() {
   const lang = localStorage.getItem("language")

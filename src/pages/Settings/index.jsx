@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
-import * as S from "../../style/settings";
+import * as S from "./styles";
 
-import Theme from "../../bgm/theme.mp3";
-import Hover from "../../sfx/hover.mp3";
-import Click from "../../sfx/click.mp3";
-import Play from "../../sfx/play.mp3";
+import Theme from "../../assets/bgm/theme.mp3";
+import Hover from "../../assets/sfx/hover.mp3";
+import Click from "../../assets/sfx/click.mp3";
+import Play from "../../assets/sfx/play.mp3";
 
 const SettingsPage = React.memo(function SettingsPage() {
   const savedBackgroundColor1 = localStorage.getItem("backgroundcolor1");

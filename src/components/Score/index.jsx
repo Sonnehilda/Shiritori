@@ -1,5 +1,4 @@
-import React from "react";
-import * as S from "../style/play";
+import * as S from "./styles";
 import { useSelector } from "react-redux";
 
 function Score({ scoreGiven, sgVisible }) {

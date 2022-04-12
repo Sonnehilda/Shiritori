@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import * as S from "../../style/about";
+import * as S from "./styles";
 
-import Theme from "../../bgm/theme.mp3";
-import Hover from "../../sfx/hover.mp3";
-import Click from "../../sfx/click.mp3";
-import Play from "../../sfx/play.mp3";
+import Theme from "../../assets/bgm/theme.mp3";
+import Hover from "../../assets/sfx/hover.mp3";
+import Click from "../../assets/sfx/click.mp3";
+import Play from "../../assets/sfx/play.mp3";
 
 const AboutPage = React.memo(function AboutPage() {
   const BGM = new Audio(Theme);

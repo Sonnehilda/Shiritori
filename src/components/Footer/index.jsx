@@ -1,5 +1,5 @@
 import React from "react";
-import * as S from "../style/footer";
+import * as S from "./styles";
 
 const Footer = React.memo(function Footer() {
   return (

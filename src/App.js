@@ -1,51 +1,31 @@
 import React from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import GlobalStyle from "./style/app";
-import * as P from "./pages/index";
+import GlobalStyle from "./styles/index";
 import "./App.css";
 
 import Footer from "./components/Footer";
 import Wrapper from "./components/Wrapper";
 
+import HomePage from "./pages/Home";
+import PlayPage from "./pages/Play";
+import SettingsPage from "./pages/Settings";
+import AboutPage from "./pages/About";
+
 function App() {
-  const location = useLocation();
-
-  const TransitionedPage = (WrappedComponent) => {
-    return (
-      <TransitionGroup component={null}>
-        <CSSTransition
-          key={location.pathname}
-          classNames="fade"
-          timeout={500}
-          unmountOnExit
-          //appear
-          exit={false}
-        >
-          <WrappedComponent />
-        </CSSTransition>
-      </TransitionGroup>
-    );
-  };
-
   return (
-    <>
+    <Router>
       <GlobalStyle />
       <Wrapper>
-        <Routes location={location}>
-          <Route exact path="/" element={TransitionedPage(P.Home)} />
-          <Route exact path="/play" element={TransitionedPage(P.Play)} />
-          <Route
-            exact
-            path="/settings"
-            element={TransitionedPage(P.Settings)}
-          />
-          <Route exact path="/about" element={TransitionedPage(P.About)} />
+        <Routes>
+          <Route exact path="/" element={<HomePage />} />
+          <Route exact path="/play" element={<PlayPage />} />
+          <Route exact path="/settings" element={<SettingsPage />} />
+          <Route exact path="/about" element={<AboutPage />} />
         </Routes>
       </Wrapper>
       <Footer />
-    </>
+    </Router>
   );
 }
 

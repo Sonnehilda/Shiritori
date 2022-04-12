@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import * as S from "../style/play";
+import { useEffect } from "react";
+import * as S from "./styles";
 import { useDispatch, useSelector } from "react-redux";
-import { tickTimeType } from "../redux/timer/types";
+import { tickTimeType } from "../../redux/timer/types";
 
 function Timer({ resetData }) {
   const timerCount = useSelector((state) => state.timer);
