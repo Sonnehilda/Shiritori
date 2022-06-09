@@ -48,7 +48,7 @@ const PlayPage = React.memo(function PlayPage() {
   const [sgVisible, setSgVisible] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [overVisible, setOverVisible] = useState(false);
-  const [usedWord, setUsedWord] = useState(new Set());
+  const [usedWord, setUsedWord] = useState([]);
 
   useEffect(() => {
     BGM.loop = true;
@@ -68,9 +68,7 @@ const PlayPage = React.memo(function PlayPage() {
       window.removeEventListener("blur", onBlur);
       window.removeEventListener("mousemove", onFirstJoin);
 
-      usedWord.clear();
-      delete [usedWord, setUsedWord];
-      setUsedWord(undefined);
+      setUsedWord([]);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -126,7 +124,7 @@ const PlayPage = React.memo(function PlayPage() {
     setStatus("");
     setDisabled(false);
     setOverVisible(true);
-    if (usedWord.length > 0) usedWord.clear();
+    if (usedWord.length > 0) setUsedWord([]);
     setTimeout(() => {
       dispatch(setScore(0));
     });
@@ -154,7 +152,7 @@ const PlayPage = React.memo(function PlayPage() {
       const form = `${input[0].toUpperCase()}${input.substring(1)}`;
       //} else if (lang == "KR") form = nameInput.current.value;
 
-      if (usedWord.length > 0 && usedWord.has(form)) {
+      if (usedWord.length > 0 && usedWord.includes(form)) {
         errorMessage(
           lang === "KR"
             ? "이미 해당 단어를 사용하였습니다!"
@@ -179,21 +177,13 @@ const PlayPage = React.memo(function PlayPage() {
 
       setDisabled(true);
       axios
-        .get(
-          //lang === "EN" ?
-          `https://api.dictionaryapi.dev/api/v2/entries/en/${form}`
-          // : `https://api.dictionaryapi.dev/api/v2/entries/en/${form}` //`https://glosbe.com/gapi/translate?from=kor&dest=eng&format=json&pretty=true&phrase=${form}`
-        )
+        .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${form}`)
         .then((res) => {
           setWord(() => form);
           setChar(() => form.charAt(form.length - 1));
-          setMeanings(
-            //lang === "EN" ?
-            res.data[0].meanings[0].definitions[0].definition
-            //: res.data[0].meanings[0].definitions[0].definition
-          );
+          setMeanings(res.data[0].meanings[0].definitions[0].definition);
           setStatus("correct");
-          usedWord.add(form);
+          usedWord.push(form);
 
           const len = Math.round(form.length / 1.25);
 
@@ -220,8 +210,8 @@ const PlayPage = React.memo(function PlayPage() {
           setDisabled(false);
           errorMessage(
             lang === "KR"
-              ? "That word doesn't exist."
-              : "해당 단어는 존재하지 않습니다."
+              ? "해당 단어는 존재하지 않습니다."
+              : "That word doesn't exist."
           );
           return;
         })
