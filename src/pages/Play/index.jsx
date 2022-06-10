@@ -68,7 +68,10 @@ const PlayPage = React.memo(function PlayPage() {
       window.removeEventListener("blur", onBlur);
       window.removeEventListener("mousemove", onFirstJoin);
 
-      setUsedWord([]);
+      setTimeout(() => {
+        dispatch(setScore(0));
+        dispatch(addTime(200));
+      });
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -124,7 +127,7 @@ const PlayPage = React.memo(function PlayPage() {
     setStatus("");
     setDisabled(false);
     setOverVisible(true);
-    if (usedWord.length > 0) setUsedWord([]);
+    setUsedWord([]);
     setTimeout(() => {
       dispatch(setScore(0));
     });
